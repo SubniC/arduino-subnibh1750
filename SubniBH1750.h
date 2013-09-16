@@ -30,11 +30,15 @@
 
 class SubniBH1750 {
 	public:	
+		SubniBH1750();
 		SubniBH1750(uint8_t);
+		void init(uint8_t);
+		void setResolution(uint8_t);
 		uint16_t getLux();
 		
 	private:
 		uint8_t _address;
+		uint8_t _is_init;
 };
 
 #endif

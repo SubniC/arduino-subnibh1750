@@ -5,14 +5,24 @@
 
 #include "SubniBH1750.h"
 	
-/**
- * Returns the temperature in kelvin for the given resistance value
- * using the Steinhart-Hart polynom.
- */
+SubniBH1750::SubniBH1750()
+{
+	_is_init = 0x00;
+	_address = 0x00;
+}
+
 SubniBH1750::SubniBH1750(uint8_t address)
+{
+	_is_init = 0x00;
+	_address = 0x00;
+	init(address);
+}
+
+void SubniBH1750::init(uint8_t address)
 {
 	_address = address;
 	setResolution(BH_HIRES_MODE);
+	_is_init = 0xFF;
 	delay(200);
 }
 
@@ -20,11 +30,19 @@ uint16_t SubniBH1750::getLux()
 {
   uint8_t i=0;
   uint8_t buff[2];
-  Wire.beginTransmission(address);
-  Wire.requestFrom(address, 2);
+ 
+  if(_is_init == 0x00)
+  {
+    //TODO: Error, deberia poder notificarse
+	//No esta inicializado	
+	return 0;
+  }
+
+  Wire.beginTransmission(_address);
+  Wire.requestFrom(_address, (uint8_t)2);
   while(Wire.available()) //
   {
-    buff[i] = Wire.receive();  // receive one byte
+    buff[i] = Wire.read();  // receive one byte
     i++;
   }
   Wire.endTransmission();  
@@ -40,6 +58,6 @@ uint16_t SubniBH1750::getLux()
 void SubniBH1750::setResolution(uint8_t res)
 {
 	Wire.beginTransmission(_address);
-	Wire.send(res);
+	Wire.write(res);
 	Wire.endTransmission();
 }
