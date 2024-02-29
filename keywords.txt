@@ -6,12 +6,12 @@
 # Datatypes (KEYWORD1)
 #########################################
 
-SubniBH1750		KEYWORD1
+SubniBH1750	KEYWORD1
 
 
 #########################################
 # Methods and Functions (KEYWORD2)
 #########################################
 
-getLux		 KEYWORD2
-setPrecision KEYWORD2
+getLux	KEYWORD2
+setPrecision	KEYWORD2
