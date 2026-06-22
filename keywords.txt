@@ -1,5 +1,5 @@
 #########################################
-# Syntax Coloring Map For SteinhartHart
+# Syntax Coloring Map For SubniBH1750
 #########################################
 
 #########################################
@@ -8,10 +8,10 @@
 
 SubniBH1750	KEYWORD1
 
-
 #########################################
 # Methods and Functions (KEYWORD2)
 #########################################
 
+init	KEYWORD2
+setResolution	KEYWORD2
 getLux	KEYWORD2
-setPrecision	KEYWORD2
